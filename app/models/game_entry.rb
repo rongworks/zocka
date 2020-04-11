@@ -19,7 +19,7 @@ class GameEntry < ApplicationRecord
 
   def game_link
     sanitized_name = name.gsub(' ', '+')
-    return game_url || "https://www.igdb.com/search?utf8=%E2%9C%93&type=1&q=#{sanitized_name}"
+    return game_url.blank? ? "https://www.igdb.com/search?utf8=%E2%9C%93&type=1&q=#{sanitized_name}" : game_url
   end
 
   def owner_count

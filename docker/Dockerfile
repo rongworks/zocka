@@ -33,6 +33,8 @@ RUN bundle install
 COPY --chown=$USER_ID:$GROUP_ID . .
 
 ENV PATH="/home/app/bin:${PATH}"
+RUN rails yarn:install
 
 ENTRYPOINT [ "sh", "./docker/entry.sh" ]
+
 CMD bundle exec rails s -p $PORT -b 0.0.0.0

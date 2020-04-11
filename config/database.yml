@@ -21,4 +21,9 @@ test:
   database: db/test.sqlite3
 
 production:
-  encoding: utf8mb4
+  <<: *default
+  encoding: utf8
+  adapter: postgresql
+  host: <%= ENV.fetch("POSTGRES_DB") %>
+  user: <%= ENV.fetch("POSTGRES_USER") %>
+  password: <%= ENV.fetch("POSTGRES_PW") %>
