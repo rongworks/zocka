@@ -1,1 +1,26 @@
-@import 'bulma/bulma';
+// @import 'bulma/bulma';
+
+.columns{
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.column {
+  padding: 0.2em;
+  margin: 0.1rem 1rem 1.5rem 1rem;
+  width: 20%;
+  overflow: auto;
+}
+
+.title{
+  font-size: 2rem;
+}
+
+.subtitle{
+  font-size: 1.5rem;
+}
+
+.row{
+  border-bottom: 1px groove gray;
+}

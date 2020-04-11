@@ -1,5 +1,7 @@
 class GameEntry < ApplicationRecord
-  has_many :game_votes
+  has_many :game_votes, dependent: :destroy
+  has_many :recommendations, dependent: :destroy
+
   validates :name, presence: true
 
   def upvotes
@@ -17,6 +19,14 @@ class GameEntry < ApplicationRecord
 
   def game_link
     sanitized_name = name.gsub(' ', '+')
-    return "https://www.igdb.com/search?utf8=%E2%9C%93&type=1&q=#{sanitized_name}"
+    return game_url || "https://www.igdb.com/search?utf8=%E2%9C%93&type=1&q=#{sanitized_name}"
+  end
+
+  def owner_count
+    recommendations.all.select { |r| r.owned? }.count
+  end
+
+  def wishlist_count
+    recommendations.all.select { |r| r.wanted? }.count
   end
 end

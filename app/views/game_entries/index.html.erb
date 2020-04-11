@@ -2,23 +2,9 @@
 
 <h1>Game Entries</h1>
 
-  <% @game_entries.each do |game_entry| %>
-    <div class="columns">
-      <div class="column is-one-fifth">
-        <span class="title"><%= game_entry.score  %></span>
-        <%= icon_link('thumbs-up', game_entry_upvote_path(game_entry), {method: :post}) %>
-        <%= icon_link('thumbs-down', game_entry_upvote_path(game_entry), {method: :post}) %>
-      </div>
-      <div class="column">
-        <p class="title"><%= game_entry.name %> <%= icon_link('atlas', game_entry.game_link) %></p>
-        <p><%= game_entry.description %></p>
-      </div>
-      <div class="column">
-        <span><%= link_to 'Edit', edit_game_entry_path(game_entry) %></span>
-        <span><%= link_to 'Destroy', game_entry, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-      </div>
-    </div>
-  <% end %>
+
+<%= render @game_entries %>
+
 <br>
 
 <%= link_to 'New Game Entry', new_game_entry_path %>

@@ -1,0 +1,18 @@
+
+<%= simple_form_for(@recommendation) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :user %>
+    <%= f.association :game_entry %>
+    <%= f.input :owned %>
+    <%= f.input :wanted %>
+    <%= f.input :hated %>
+    <%= f.input :platform, collection: %w(PC Playstation XBox Switch SNES Wii), input_html: { class: 'special' } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

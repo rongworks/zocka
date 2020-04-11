@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @recommendation.user_id %>
+</p>
+
+<p>
+  <strong>Game entry:</strong>
+  <%= @recommendation.game_entry_id %>
+</p>
+
+<p>
+  <strong>Owned:</strong>
+  <%= @recommendation.owned %>
+</p>
+
+<p>
+  <strong>Wanted:</strong>
+  <%= @recommendation.wanted %>
+</p>
+
+<p>
+  <strong>Hated:</strong>
+  <%= @recommendation.hated %>
+</p>
+
+<p>
+  <strong>Platform:</strong>
+  <%= @recommendation.platform %>
+</p>
+
+<%= link_to 'Edit', edit_recommendation_path(@recommendation) %> |
+<%= link_to 'Back', recommendations_path %>
