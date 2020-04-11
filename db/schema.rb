@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_10_133813) do
+ActiveRecord::Schema.define(version: 2020_04_10_135102) do
 
   create_table "game_entries", force: :cascade do |t|
     t.string "name"
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 2020_04_10_133813) do
     t.index ["user_id"], name: "index_game_votes_on_user_id"
   end
 
+  create_table "recommendations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "game_entry_id", null: false
+    t.boolean "owned"
+    t.boolean "wanted"
+    t.boolean "hated"
+    t.string "platform"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_entry_id"], name: "index_recommendations_on_game_entry_id"
+    t.index ["user_id"], name: "index_recommendations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -46,4 +59,6 @@ ActiveRecord::Schema.define(version: 2020_04_10_133813) do
 
   add_foreign_key "game_votes", "game_entries"
   add_foreign_key "game_votes", "users"
+  add_foreign_key "recommendations", "game_entries"
+  add_foreign_key "recommendations", "users"
 end
