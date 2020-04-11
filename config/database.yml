@@ -24,6 +24,6 @@ production:
   <<: *default
   encoding: utf8
   adapter: postgresql
-  host: <%= ENV.fetch("POSTGRES_DB") %>
-  user: <%= ENV.fetch("POSTGRES_USER") %>
-  password: <%= ENV.fetch("POSTGRES_PW") %>
+  #host: <%= ENV.fetch("POSTGRES_DB") %>
+  #user: <%= ENV.fetch("POSTGRES_USER") %>
+  #password: <%= ENV.fetch("POSTGRES_PW") %>
