@@ -12,6 +12,12 @@ class GameEntry < ApplicationRecord
     game_votes.all.select { |v| v.score <= 0}
   end
 
+  def vote(score, user, comment = '')
+    vote = self.game_votes.find_by(user_id: user.id) || GameVote.new(user: user, game_entry: self, score: score)
+    vote.score = score
+    vote.save!
+  end
+
   def score
     return 0 if game_votes.blank?
     game_votes.sum(&:score)

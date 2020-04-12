@@ -5,4 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :game_votes
+
+  before_save :set_username
+
+  private
+
+  def set_username
+    self.username = email unless username
+  end
 end

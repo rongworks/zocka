@@ -62,23 +62,21 @@ class GameEntriesController < ApplicationController
   end
 
   def upvote
-    vote(1)
+    @game_entry = GameEntry.find(params[:game_entry_id])
+    comment = params[:comment] || ''
+    @game_entry.vote(1, current_user, comment)
+    redirect_to game_entries_path
   end
 
   def downvote
-    vote(-1)
+    @game_entry = GameEntry.find(params[:game_entry_id])
+    comment = params[:comment] || ''
+    @game_entry.vote(-1, current_user, comment)
+    redirect_to game_entries_path
   end
 
   private
 
-  def vote(score)
-    @game_entry = GameEntry.find(params[:game_entry_id])
-    comment = params[:comment] || ''
-    vote = @game_entry.game_votes.find_by(user_id: current_user.id) || GameVote.new(user: current_user, game_entry: @game_entry, score: score)
-    vote.score = score
-    vote.save!
-    redirect_to game_entries_path
-  end
     # Use callbacks to share common setup or constraints between actions.
     def set_game_entry
       @game_entry = GameEntry.find(params[:id])

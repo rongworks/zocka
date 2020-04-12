@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) { FactoryBot.build(:user) }
+
+  it 'gets a default username' do
+    user.username = nil
+    user.save!
+    user.reload
+
+    expect(user.username).to eq user.email
+  end
 end

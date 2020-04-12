@@ -23,6 +23,12 @@ RSpec.describe "/recommendations", type: :request do
     skip("Add a hash of attributes invalid for your model")
   }
 
+  let(:test_user){ FactoryBot.create(:user) }
+
+  before :each do
+    sign_in(test_user)
+  end
+
   describe "GET /index" do
     it "renders a successful response" do
       Recommendation.create! valid_attributes

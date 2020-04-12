@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :recommendation do
-    user { nil }
-    game_entry { nil }
+    association :user
+    association :game_entry
     owned { false }
     wanted { false }
     hated { false }

@@ -16,12 +16,21 @@ RSpec.describe "/game_entries", type: :request do
   # GameEntry. As you add validations to GameEntry, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+        name: 'Bla'
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+        name: nil
+    }
   }
+  let(:test_user){ FactoryBot.create(:user) }
+
+  before :each do
+    sign_in(test_user)
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -42,6 +51,7 @@ RSpec.describe "/game_entries", type: :request do
   describe "GET /new" do
     it "renders a successful response" do
       get new_game_entry_url
+      puts response.body
       expect(response).to be_successful
     end
   end
@@ -85,14 +95,14 @@ RSpec.describe "/game_entries", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: 'NewName'}
       }
 
       it "updates the requested game_entry" do
         game_entry = GameEntry.create! valid_attributes
         patch game_entry_url(game_entry), params: { game_entry: new_attributes }
         game_entry.reload
-        skip("Add assertions for updated state")
+        expect(game_entry.name).to eq 'NewName'
       end
 
       it "redirects to the game_entry" do
