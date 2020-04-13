@@ -1,23 +1,20 @@
 <div class="profile columns row">
     <div class="column">
-      <h1> <%= link_to  'Zocka !', root_path %> </h1>
+      <h1> <%= link_to  root_path do %>
+          <i class="fas fa-gamepad"></i>
+          Zocka
+          <% end %>
+          </h1>
     </div>
     <% if user_signed_in? %>
       <div class="column">
-        <i class="fas fa-user"></i><%= current_user.username %>
-      </div>
-      <div class="column">
-        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-      </div>
-      <div class="column">
-        <%= link_to('Edit registration', edit_user_registration_path) %>
+        <i class="fas fa-user"></i>&nbsp;<%= link_to(current_user.username, edit_user_registration_path) %>
+        <%= link_to('(Logout)', destroy_user_session_path, method: :delete) %>
       </div>
     <% else %>
-      <div class="column"></div>
+      <div class="column">Not logged in</div>
       <div class="column">
         <%= link_to('Login', new_user_session_path) %>
-      </div>
-      <div class="column">
         <%= link_to('Register', new_user_registration_path) %>
       </div>
     <% end %>

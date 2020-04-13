@@ -1,32 +1,29 @@
 <div class="columns game_entry game_<%= game_entry.id %>">
+  <div class="column w-25">
+    <p class="title wrap-text"><%= game_entry.name %></p>
+      <div class="columns">
+        <div class="column"><%= icon_link('search', game_entry_path(game_entry), title: 'Show Entry') %></div>
+        <div class="column"><%= icon_link('edit', edit_game_entry_path(game_entry), name: 'edit_entry', title: 'Edit Entry') %></div>
+        <div class="column"><%= icon_link('globe', game_entry.game_link, title: 'See webpage') %></div>
+        <div class="column"><%= icon_link('trash-alt', game_entry, method: :delete, data: { confirm: 'Are you sure?' }, name: 'delete_entry', title: "Delete Entry") %></div>
+        <div class="column"><%= icon_link('thumbs-up', game_entry_upvote_path(game_entry), method: :post, title: "I like it!") %></div>
+        <div class="column"><%= icon_link('thumbs-down', game_entry_downvote_path(game_entry), method: :post, title: "I hate it!") %></div>
+      </div>
+    <div class="game_description wrap-text"><%= game_entry.description %></div>
+  </div>
   <div class="column is-one-fifth">
     <span class="title score"><%= game_entry.score  %></span>
-    <%= icon_link('thumbs-up', game_entry_upvote_path(game_entry), {method: :post}) %>
-    <%= icon_link('thumbs-down', game_entry_downvote_path(game_entry), {method: :post}) %>
   </div>
   <div class="column">
-    <p class="title"><%= game_entry.name %>
-      <span><%= icon_link('search', game_entry.game_link) %></span>
-    </p>
-    <p></p>
-    <p><%= game_entry.description %></p>
-  </div>
-  <div class="column">
-    <p>
-      <%= link_to 'I have it', new_recommendation_path(recommendation: {game_entry_id: game_entry.id, user_id: current_user.id, owned: true}), name: 'have_it' %>
-    </p>
-    <p>
-      (<%= game_entry.owner_count %> user have it)
-    </p>
-    <p>
-      <%= link_to 'I want it', new_recommendation_path(recommendation: {game_entry_id: game_entry.id, user_id: current_user.id, wanted: true}), name: 'want_it' %>
-    </p>
-    <p>
-      (<%= game_entry.wishlist_count %> user want it)
-    </p>
-  </div>
-  <div class="column">
-    <span><%= link_to 'Edit', edit_game_entry_path(game_entry), name: 'edit_entry' %></span>
-    <span><%= link_to 'Destroy', game_entry, method: :delete, data: { confirm: 'Are you sure?' }, name: 'delete_entry' %></span>
+    <div class="columns">
+      <div class="column">
+        <%= icon_link('dollar-sign', new_recommendation_path(recommendation: {game_entry_id: game_entry.id, user_id: current_user.id, owned: true}), title: 'I have it! ') %>
+        ( <%= game_entry.owner_count %> )
+      </div>
+      <div class="column">
+        <%= icon_link('grin-hearts', new_recommendation_path(recommendation: {game_entry_id: game_entry.id, user_id: current_user.id, wanted: true}), title: 'I want it! ') %>
+        ( <%= game_entry.wishlist_count %> )
+      </div>
+    </div>
   </div>
 </div>

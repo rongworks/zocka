@@ -33,7 +33,7 @@ class RecommendationsController < ApplicationController
 
     respond_to do |format|
       if @recommendation.save
-        format.html { redirect_to @recommendation, notice: 'Recommendation was successfully created.' }
+        format.html { redirect_to game_entries_path, notice: 'Recommendation was successfully created.' }
         format.json { render :show, status: :created, location: @recommendation }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class RecommendationsController < ApplicationController
   def update
     respond_to do |format|
       if @recommendation.update(recommendation_params)
-        format.html { redirect_to @recommendation, notice: 'Recommendation was successfully updated.' }
+        format.html { redirect_to game_entries_path, notice: 'Recommendation was successfully updated.' }
         format.json { render :show, status: :ok, location: @recommendation }
       else
         format.html { render :edit }

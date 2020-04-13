@@ -72,9 +72,9 @@ RSpec.describe "/game_entries", type: :request do
         }.to change(GameEntry, :count).by(1)
       end
 
-      it "redirects to the created game_entry" do
+      it "redirects to the overview" do
         post game_entries_url, params: { game_entry: valid_attributes }
-        expect(response).to redirect_to(game_entry_url(GameEntry.last))
+        expect(response).to redirect_to(game_entries_path)
       end
     end
 
@@ -105,11 +105,11 @@ RSpec.describe "/game_entries", type: :request do
         expect(game_entry.name).to eq 'NewName'
       end
 
-      it "redirects to the game_entry" do
+      it "redirects to the overview" do
         game_entry = GameEntry.create! valid_attributes
         patch game_entry_url(game_entry), params: { game_entry: new_attributes }
         game_entry.reload
-        expect(response).to redirect_to(game_entry_url(game_entry))
+        expect(response).to redirect_to(game_entries_path)
       end
     end
 
