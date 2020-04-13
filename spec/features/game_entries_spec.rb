@@ -15,6 +15,17 @@ describe "Managing game entries", type: :feature do
     expect(page).to have_css('.title', text: game_entries[1].name)
   end
 
+  scenario 'Games are ranked by default' do
+    game1 = FactoryBot.create(:game_entry, name: 'Game1')
+    game2 = FactoryBot.create(:game_entry, name: 'Game2')
+
+    vote(game2.id, 'upvote')
+    visit game_entries_path
+
+    first_game = page.first('.game_entry')
+    expect(first_game).to have_css('.title', text: game2.name)
+  end
+
   scenario 'I can add new entries' do
     visit new_game_entry_path
     fill_in 'game_entry_name', with: 'My Game'

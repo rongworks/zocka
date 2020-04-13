@@ -4,6 +4,8 @@ class GameEntry < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :ranked, -> { sort_by(&:score).reverse! }
+
   def upvotes
     game_votes.all.select { |v| v.score > 0 }
   end

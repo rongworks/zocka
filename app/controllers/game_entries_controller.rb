@@ -4,7 +4,7 @@ class GameEntriesController < ApplicationController
   # GET /game_entries
   # GET /game_entries.json
   def index
-    @game_entries = GameEntry.all
+    @game_entries = GameEntry.ranked
   end
 
   # GET /game_entries/1
