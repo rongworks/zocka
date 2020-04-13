@@ -65,3 +65,6 @@ RSpec.configure do |config|
 end
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+require 'capybara/rails'
+require 'capybara/rspec'
+require 'capybara-screenshot/rspec'

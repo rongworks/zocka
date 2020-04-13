@@ -28,7 +28,7 @@ class GameEntriesController < ApplicationController
 
     respond_to do |format|
       if @game_entry.save
-        format.html { redirect_to @game_entry, notice: 'Game entry was successfully created.' }
+        format.html { redirect_to game_entries_path, notice: 'Game entry was successfully created.' }
         format.json { render :show, status: :created, location: @game_entry }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class GameEntriesController < ApplicationController
   def update
     respond_to do |format|
       if @game_entry.update(game_entry_params)
-        format.html { redirect_to @game_entry, notice: 'Game entry was successfully updated.' }
+        format.html { redirect_to game_entries_path, notice: 'Game entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @game_entry }
       else
         format.html { render :edit }

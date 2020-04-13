@@ -41,6 +41,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.4'
+  gem 'capybara'
+  gem 'capybara-screenshot'
 end
 
 group :development do
