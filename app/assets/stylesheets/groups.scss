@@ -1,0 +1,22 @@
+// Place all the styles related to the Groups controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.group_link {
+  border-radius: 15px;
+  border: 1px solid darkgray;
+  color: black;
+  margin: 0.2em;
+}
+
+.group_link:hover {
+  background-color: lightblue;
+}
+.group_link a:visited{
+  color: black;
+}
+
+
+.group_link .active{
+  background-color: orange;
+}

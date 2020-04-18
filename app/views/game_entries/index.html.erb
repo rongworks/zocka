@@ -1,7 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Game Entries</h1>
-<%= link_to 'New Game Entry', new_game_entry_path %>
+
+<h1><%= index_title %></h1>
+<%= render 'groups/group_list', groups: current_user.groups %>
+<% if @group %>
+  <%= render 'groups/add_game', group: @group, id: @group.id %>
+  <%= link_to 'New Game Entry', new_game_entry_path(group_id: @group.id), class: 'new_game' %>
+<% else %>
+  <%= link_to 'New Game Entry', new_game_entry_path, class: 'new_game' %>
+<% end %>
+
 <br/>
 <br/>
 

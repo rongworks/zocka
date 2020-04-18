@@ -25,14 +25,14 @@ RSpec.describe GameEntry, type: :model do
     it 'can be upvoted' do
       user = FactoryBot.create(:user)
       game_entry.save!
-      game_entry.vote(1, user)
+      game_entry.vote(score: 1, user: user)
       expect(game_entry.score).to eq 1
     end
 
     it 'can be downvoted' do
       user = FactoryBot.create(:user)
       game_entry.save!
-      game_entry.vote(-1, user)
+      game_entry.vote(score: -1, user: user)
       expect(game_entry.score).to eq -1
     end
   end

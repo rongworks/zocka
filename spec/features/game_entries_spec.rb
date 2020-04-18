@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Managing game entries", type: :feature do
+feature "Managing game entries", type: :feature do
   let(:test_user){ FactoryBot.create(:user) }
 
   before :each do

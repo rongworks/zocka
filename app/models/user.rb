@@ -5,8 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :game_votes
+  has_many :groups
 
   before_save :set_username
+
+  def to_s
+    username
+  end
 
   private
 

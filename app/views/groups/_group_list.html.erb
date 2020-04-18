@@ -1,0 +1,10 @@
+<div class="columns">
+  <div class="column group_link">
+    <%= link_to "All games", game_entries_path(group_id: 0) %>
+  </div>
+  <% groups.each do |group| %>
+    <div class="column group_link">
+      <%= link_to group.name, game_entries_path(group_id: group.id) %>
+    </div>
+  <% end %>
+</div>

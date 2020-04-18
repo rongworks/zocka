@@ -1,0 +1,7 @@
+<div>
+  <h2>Add a game</h2>
+  <%= simple_form_for :add_game, url: add_game_group_url(id: group.id) do |f| %>
+    <%= select_tag "game_entry_id", options_from_collection_for_select(GameEntry.select(:id, :name), "id", "name"), name: 'game_entry_id' %>
+    <%= f.button :submit, class: 'add_game' %>
+  <% end %>
+</div>

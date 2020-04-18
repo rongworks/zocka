@@ -1,28 +1,34 @@
 class GameEntry < ApplicationRecord
   has_many :game_votes, dependent: :destroy
   has_many :recommendations, dependent: :destroy
+  has_many :group_game_entries
+  has_many :groups, through: :group_game_entries
 
   validates :name, presence: true
 
   scope :ranked, -> { sort_by(&:score).reverse! }
+  scope :grouped, -> (group) {group.game_entries if group}
 
-  def upvotes
-    game_votes.all.select { |v| v.score > 0 }
+  def upvotes(group = nil)
+    game_votes.grouped(group).select { |v| v.score > 0 }
   end
 
-  def downvotes
-    game_votes.all.select { |v| v.score <= 0}
+  def downvotes(group = nil)
+    game_votes.grouped(group).select { |v| v.score <= 0}
   end
 
-  def vote(score, user, comment = '')
-    vote = self.game_votes.find_by(user_id: user.id) || GameVote.new(user: user, game_entry: self, score: score)
+  def vote(score:, user:, group: nil, comment: '')
+    vote = self.game_votes.find_by(user_id: user.id, group: group) || GameVote.new(user: user,
+                                                                                   game_entry: self,
+                                                                                   score: score,
+                                                                                   group: group)
     vote.score = score
     vote.save!
   end
 
-  def score
-    return 0 if game_votes.blank?
-    game_votes.sum(&:score)
+  def score(group = nil)
+    return 0 if game_votes.grouped(group).blank?
+    game_votes.grouped(group).sum(&:score)
   end
 
   def game_link

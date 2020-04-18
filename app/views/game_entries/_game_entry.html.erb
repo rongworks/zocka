@@ -6,13 +6,13 @@
         <div class="column"><%= icon_link('edit', edit_game_entry_path(game_entry), name: 'edit_entry', title: 'Edit Entry') %></div>
         <div class="column"><%= icon_link('globe', game_entry.game_link, title: 'See webpage') %></div>
         <div class="column"><%= icon_link('trash-alt', game_entry, method: :delete, data: { confirm: 'Are you sure?' }, name: 'delete_entry', title: "Delete Entry") %></div>
-        <div class="column"><%= icon_link('thumbs-up', game_entry_upvote_path(game_entry), method: :post, title: "I like it!") %></div>
-        <div class="column"><%= icon_link('thumbs-down', game_entry_downvote_path(game_entry), method: :post, title: "I hate it!") %></div>
+        <div class="column"><%= icon_link('thumbs-up', upvote_game_entry_path(id: game_entry.id, group_id: get_group_id), method: :post, title: "I like it!") %></div>
+        <div class="column"><%= icon_link('thumbs-down', downvote_game_entry_path(id: game_entry.id, group_id: get_group_id), method: :post, title: "I hate it!") %></div>
       </div>
     <div class="game_description wrap-text"><%= game_entry.description %></div>
   </div>
   <div class="column is-one-fifth">
-    <span class="title score"><%= game_entry.score  %></span>
+    <span class="title score"><%= game_entry.score(@group)  %></span>
   </div>
   <div class="column">
     <div class="columns">

@@ -22,4 +22,21 @@ RSpec.describe GameVote, type: :model do
     vote.comment = 'Bla'
     expect(vote.comment).to eq 'Bla'
   end
+
+  it 'can be scoped by Group' do
+    vote.save!
+    group1 = FactoryBot.create(:group)
+    group2 = FactoryBot.create(:group)
+    vote2 = FactoryBot.create(:game_vote, group: group1)
+    vote3 = FactoryBot.create(:game_vote, group: group2)
+
+    filtered = GameVote.grouped(group1)
+    expect(filtered.count).to eq 1
+    expect(filtered.first).to eq vote2
+
+    no_filter = GameVote.grouped(nil)
+    expect(no_filter.count).to eq 1
+    expect(no_filter.first).to eq vote
+  end
+
 end
